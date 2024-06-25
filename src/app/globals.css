@@ -84,17 +84,19 @@ button {
   border-radius: 6px;
   font-size: 1rem;
   /* Reduce font size slightly */
-  background-color: #f30000;
-  /* Blue button */
+  background: linear-gradient(45deg, #f30000, #ff6f61);
+  /* Gradient background */
   color: #ffffff;
   /* White text */
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  background-color: #b50000;
-  /* Darker blue on hover */
+  background: linear-gradient(45deg, #b50000, #f73325db);
+  /* Darker gradient on hover */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.625);
+  /* Stronger glow on hover */
   transform: translateY(-2px);
   /* Slight lift on hover */
 }
