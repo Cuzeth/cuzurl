@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
 
 const pool = new Pool({
-  connectionString: "postgresql://postgres:mysecretpassword@localhost:5432/mydatabase",
+  connectionString: process.env.DATABASE_AUTH,
 });
 
 pool.on('connect', () => {
