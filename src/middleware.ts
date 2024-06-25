@@ -2,13 +2,13 @@ import { NextResponse, NextRequest } from 'next/server';
 import { LRUCache } from 'lru-cache';
 
 // Initialize LRU cache
-const rateLimitCache = new LRUCache<string, { count: number, timestamp: number }>({
+const rateLimitCache = new LRUCache<string, { count: number; timestamp: number }>({
     max: 500, // Maximum number of items in cache
-    ttl: 60000 // Cache time-to-live in milliseconds (60 seconds)
+    ttl: 60000, // Cache time-to-live in milliseconds (60 seconds)
 });
 
-const RATE_LIMIT = 5; // Number of requests
-const TIME_WINDOW = 60 * 1000; // Time window in milliseconds (60 seconds)
+const RATE_LIMIT = 10; // Number of requests
+const TIME_WINDOW = 30 * 1000; // Time window in milliseconds (30 seconds)
 
 export async function middleware(request: NextRequest) {
     const ip = request.headers.get('x-real-ip') || request.ip || 'default-ip';
@@ -28,7 +28,7 @@ export async function middleware(request: NextRequest) {
             // Within the time window
             if (record.count >= RATE_LIMIT) {
                 // Rate limit exceeded
-                return new NextResponse('Too Many Requests', { status: 429 });
+                return NextResponse.json({ error: 'Too many requests.' }, { status: 429 });
             } else {
                 // Increment request count
                 record.count += 1;

@@ -1,13 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.replace('/');
+    }
+  }, [status]);
+
+  const handleSignIn = async () => {
+    await signIn('github');
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,8 +51,10 @@ export default function Home() {
   return (
     <div className="container">
       <h1>URL Shortener</h1>
-      {!session ? (
-        <button onClick={() => signIn('github')}>Sign in with GitHub</button>
+      {status === 'loading' ? (
+        <p>Loading...</p>
+      ) : !session ? (
+        <button onClick={handleSignIn}>Sign in with GitHub</button>
       ) : (
         <>
           <form onSubmit={handleSubmit}>
@@ -48,7 +66,7 @@ export default function Home() {
             />
             <button type="submit">Shorten</button>
           </form>
-          <button onClick={() => signOut()}>Sign out</button>
+          <button onClick={handleSignOut}>Sign out</button>
           {errorMessage && (
             <div className="error-message">
               <p>{errorMessage}</p>
