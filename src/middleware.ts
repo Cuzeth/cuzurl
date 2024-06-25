@@ -7,7 +7,7 @@ const rateLimitCache = new LRUCache<string, { count: number; timestamp: number }
     ttl: 60000, // Cache time-to-live in milliseconds (60 seconds)
 });
 
-const RATE_LIMIT = 10; // Number of requests
+const RATE_LIMIT = 40; // Number of requests
 const TIME_WINDOW = 30 * 1000; // Time window in milliseconds (30 seconds)
 
 export async function middleware(request: NextRequest) {
