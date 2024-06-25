@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent scrolling */
+body,
+html {
+  overflow: hidden;
+}
+
+/* Hide scrollbar for all browsers */
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for all browsers (cross-browser compatibility) */
+body,
+html {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 body {
   background-color: #0b0b0b;
   /* Darker background */
