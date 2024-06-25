@@ -43,7 +43,7 @@ export default function Home() {
       setErrorMessage(data.error);
       setShortUrl('');
     } else {
-      setShortUrl(`${window.location.origin}/api/r?s=${data.shortUrl}`);
+      setShortUrl(`${window.location.origin}/${data.shortUrl}`);
       setErrorMessage('');
     }
   };
