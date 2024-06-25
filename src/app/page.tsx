@@ -52,7 +52,7 @@ export default function Home() {
     <div className="container">
       <h1>URL Shortener</h1>
       {status === 'loading' ? (
-        <p>Loading...</p>
+        <p className="loading">Loading...</p>
       ) : !session ? (
         <button onClick={handleSignIn}>Sign in with GitHub</button>
       ) : (
