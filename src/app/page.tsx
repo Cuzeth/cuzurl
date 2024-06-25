@@ -20,24 +20,21 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">URL Shortener</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col">
+    <div className="container">
+      <h1>URL Shortener</h1>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={originalUrl}
           onChange={(e) => setOriginalUrl(e.target.value)}
           placeholder="Enter your URL"
-          className="p-2 border border-gray-300 rounded mb-4"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-          Shorten
-        </button>
+        <button type="submit">Shorten</button>
       </form>
       {shortUrl && (
-        <div className="mt-4">
-          <p className="text-lg">Shortened URL:</p>
-          <a href={shortUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500">
+        <div className="shortened-url">
+          <p>Shortened URL:</p>
+          <a href={shortUrl} target="_blank" rel="noopener noreferrer">
             {shortUrl}
           </a>
         </div>

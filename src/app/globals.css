@@ -1,3 +1,86 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #0d0d0d; /* Darker background */
+  color: #eaeaea; /* Light text color */
+  font-family: 'Inter', sans-serif; /* Professional and clean font */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  margin: 0;
+  padding: 0 20px; /* Padding for better mobile view */
+}
+
+.container {
+  max-width: 500px;
+  width: 100%;
+  padding: 40px; /* More padding for a cleaner look */
+  background-color: #1a1a1a; /* Slightly lighter background for container */
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Deeper shadow for better pop */
+  text-align: center; /* Centered text */
+}
+
+h1 {
+  font-size: 2.5rem; /* Larger heading */
+  margin-bottom: 1.5rem;
+  color: #00c6ff; /* Vibrant color for the heading */
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(0, 198, 255, 0.7), 0 0 20px rgba(0, 114, 255, 0.5); /* Glow effect */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 15px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  background-color: #2a2a2a; /* Dark input background */
+  color: #eaeaea; /* Light text */
+  transition: background-color 0.3s ease;
+}
+
+input:focus {
+  background-color: #333; /* Slightly lighter on focus */
+  outline: none; /* Remove default outline */
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  background-color: #0070f3; /* Blue button */
+  color: #ffffff; /* White text */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005bb5; /* Darker blue on hover */
+}
+
+.shortened-url {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  text-shadow: 0 0 5px rgba(0, 198, 255, 0.7), 0 0 10px rgba(0, 114, 255, 0.5); /* Glow effect */
+}
+
+.shortened-url a {
+  color: #00c6ff; /* Vibrant link color */
+  text-decoration: none;
+}
+
+.shortened-url a:hover {
+  text-decoration: underline;
+}
