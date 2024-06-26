@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import './globals.css';
 import Provider from './session';
 
@@ -32,6 +32,14 @@ export const metadata: Metadata = {
     },
   ],
   manifest: "/site.webmanifest?v=1",
+};
+
+export const viewport: Viewport = {
+  // width: 'device-width',
+  // initialScale: 1,
+  themeColor: [
+    { color: "#0b0b0b" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
