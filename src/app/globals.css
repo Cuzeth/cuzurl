@@ -110,14 +110,14 @@ button {
   color: #ffffff;
   /* White text */
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 32px rgba(255, 0, 38, 0.5), 0 8px 32px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s ease-out;
 }
 
 button:hover {
-  background: linear-gradient(45deg, #b50000, #f73325db);
-  /* Darker gradient on hover */
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.625);
-  /* Stronger glow on hover */
+  color: #fff;
+  background-color: #f00946;
+  box-shadow: 0 8px 32px rgba(255, 0, 38, 0.3), 0 8px 32px rgba(255, 0, 0, 0.1);
   transform: translateY(-2px);
   /* Slight lift on hover */
 }
