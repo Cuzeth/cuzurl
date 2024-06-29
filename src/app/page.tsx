@@ -66,7 +66,10 @@ export default function Home() {
             />
             <button type="submit">Shorten</button>
           </form>
-          <button onClick={handleSignOut}>Sign out</button>
+          <div className="button-group">
+            <button onClick={handleSignOut}>Sign out</button>
+            <button onClick={() => router.push('/manage')}>Manage URLs</button>
+          </div>
           {errorMessage && (
             <div className="error-message">
               <p>{errorMessage}</p>
