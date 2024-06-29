@@ -7,7 +7,7 @@ const generateShortUrl = () => Math.random().toString(36).substr(2, 5);
 export async function POST(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  if (!token || token.sub !== process.env.GITHUB_USER_ID) {
+  if (!token || !token.sub || !process.env.GITHUB_USER_ID?.split(',').includes(token.sub)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
