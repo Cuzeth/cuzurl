@@ -4,6 +4,15 @@ import pool from '../../../lib/db';
 
 const generateShortUrl = () => Math.random().toString(36).substr(2, 5);
 
+const isValidUrl = (urlString: string) => {
+  try {
+    new URL(urlString);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 export async function POST(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
@@ -16,6 +25,10 @@ export async function POST(req: NextRequest) {
 
     if (!originalUrl) {
       return NextResponse.json({ error: 'Original URL is required' }, { status: 400 });
+    }
+
+    if (!isValidUrl(originalUrl)) {
+      return NextResponse.json({ error: 'Invalid URL' }, { status: 400 });
     }
 
     const shortUrl = generateShortUrl();
