@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 export default function Manage() {
     const { data: session, status } = useSession();
     const [urls, setUrls] = useState([]);
-
     const router = useRouter();
 
     useEffect(() => {
@@ -36,7 +35,7 @@ export default function Manage() {
         });
         const data = await res.json();
         if (res.status === 200) {
-            fetchUrls();
+            fetchUrls(); // Refresh the list of URLs after deletion
         } else {
             console.error(data.error);
         }
@@ -51,15 +50,16 @@ export default function Manage() {
     }
 
     return (
-        <div>
+        <div className="container">
             <h1>Manage Your URLs</h1>
             <ul>
                 {urls.map((url: any) => (
-                    <li key={url.shortUrl}>
-                        <a href={url.originalUrl} target="_blank" rel="noopener noreferrer">{url.originalUrl}</a>
-                        <button onClick={() => handleDelete(url.shortUrl)}>Delete</button>
+                    <li key={url.short_url} className="url-item">
+                        <a href={url.original_url} target="_blank" rel="noopener noreferrer">{url.original_url} | {url.short_url}</a>
+                        <button onClick={() => handleDelete(url.short_url)}>Delete</button>
                     </li>
                 ))}
+                <button onClick={() => router.push('/')} className="back-button">Back</button>
             </ul>
         </div>
     );
