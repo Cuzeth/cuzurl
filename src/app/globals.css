@@ -56,6 +56,14 @@ body {
   /* Centered text */
 }
 
+/* Loading Spinner */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 h1 {
   font-size: 2.5rem;
   /* Larger heading */
@@ -157,26 +165,6 @@ button:hover {
   /* Red color for error message */
 }
 
-/* Glowing animation */
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-
-  50% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.5);
-  }
-
-  100% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-}
-
-.loading {
-  font-size: 1.5rem;
-  animation: glow 1.5s infinite;
-}
-
 .back-button {
   margin-bottom: 20px;
   padding: 10px 20px;
@@ -214,4 +202,33 @@ button:hover {
 
 .url-item button:hover {
   box-shadow: 0 8px 32px rgba(255, 0, 38, 0.5), 0 8px 32px rgba(255, 0, 0, 0.3);
+}
+
+/* Loading Spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin2 {
+  0% {
+    stroke-dasharray: 1, 800;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 400, 400;
+    stroke-dashoffset: -200px;
+  }
+  100% {
+    stroke-dasharray: 800, 1;
+    stroke-dashoffset: -800px;
+  }
+}
+
+.spin2 {
+  transform-origin: center;
+  animation: spin2 1.5s ease-in-out infinite,
+  spin 1.3s linear infinite;
+  animation-direction: alternate;
 }

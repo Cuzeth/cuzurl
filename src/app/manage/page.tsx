@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function Manage() {
     const { data: session, status } = useSession();
@@ -25,7 +26,7 @@ export default function Manage() {
         }
     };
 
-    const handleDelete = async (shortUrl: any) => {
+    const handleDelete = async (shortUrl: string) => {
         const res = await fetch(`/api/delete-url`, {
             method: 'DELETE',
             headers: {
@@ -42,7 +43,7 @@ export default function Manage() {
     };
 
     if (status === 'loading') {
-        return <p>Loading...</p>;
+        return <LoadingSpinner />;
     }
 
     if (!session) {
@@ -53,7 +54,7 @@ export default function Manage() {
         <div className="container">
             <h1>Manage Your URLs</h1>
             <ul>
-                {urls.map((url: any) => (
+                {urls.map((url: { short_url: string, original_url: string }) => (
                     <li key={url.short_url} className="url-item">
                         <a href={url.original_url} target="_blank" rel="noopener noreferrer">{url.original_url} | {url.short_url}</a>
                         <button onClick={() => handleDelete(url.short_url)}>Delete</button>

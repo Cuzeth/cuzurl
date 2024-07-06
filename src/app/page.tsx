@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import LoadingSpinner from './components/LoadingSpinner';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -52,7 +53,7 @@ export default function Home() {
     <div className="container">
       <h1>URL Shortener</h1>
       {status === 'loading' ? (
-        <p className="loading">Loading...</p>
+        <LoadingSpinner />
       ) : !session ? (
         <button onClick={handleSignIn}>Sign in with GitHub</button>
       ) : (
